@@ -15,9 +15,12 @@ export class UserServices {
     }
 
     createUser(userDto: CreateUserDto) {
-        return this.users.push({
+        this.users.push({
             ...userDto,
             id: Date.now().toString()            
         })
+        return {
+            users: this.users
+        }
     }
 }
