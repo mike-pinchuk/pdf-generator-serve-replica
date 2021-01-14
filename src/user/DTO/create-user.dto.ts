@@ -4,7 +4,7 @@ import { IsEmail, IsNotEmpty, IsString } from "class-validator"
 export class CreateUserDto {
     @IsNotEmpty()
     @IsEmail()
-    @ApiProperty({example: '<html>test_login</html>'})
+    @ApiProperty({example: '<html>test_email</html>'})
     readonly email: string
 
     @IsNotEmpty()

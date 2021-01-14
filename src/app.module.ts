@@ -22,5 +22,4 @@ import { UserEntity } from './user/user.entity';
   providers: [AppService],
 })
 export class AppModule {
-  constructor() { }
 }
