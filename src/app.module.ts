@@ -5,7 +5,6 @@ import { HeadlessChromeModule } from "./headless-chrome/headless-chrome.module";
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { typedEnv } from './utils/typed-env';
-import { Connection } from 'typeorm';
 import { UserEntity } from './user/user.entity';
 
 @Module({
@@ -23,5 +22,5 @@ import { UserEntity } from './user/user.entity';
   providers: [AppService],
 })
 export class AppModule {
-  constructor(private connection: Connection) { }
+  constructor() { }
 }

@@ -1,6 +1,7 @@
 
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { string } from "joi";
 import { Repository } from "typeorm";
 import { CreateUserDto } from "./DTO/create-user.dto";
 import { UserEntity } from "./user.entity";
@@ -21,14 +22,7 @@ export class UserServices {
     }
 
     createUser(userDto: CreateUserDto) {
-        this.usersRepository.insert(userDto)
-        return this.getAll()
-        // this.users.push({
-        //     ...userDto,
-        //     id: Date.now().toString()
-        // })
-        // return {
-        //     users: this.users
-        // }
+        this.usersRepository.save(userDto)
+        return `Email ${userDto.email} has successfully been added`
     }
 }

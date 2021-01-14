@@ -8,6 +8,6 @@ export class UserEntity {
     @Column()
     email: string
 
-    @Column()
+    @Column({name: 'password_hash'})
     passwordHash: string
 }
