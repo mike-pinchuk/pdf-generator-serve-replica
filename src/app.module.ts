@@ -6,6 +6,8 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { typedEnv } from './utils/typed-env';
 import { UserEntity } from './user/user.entity';
+import { AuthController } from './auth/auth.controller';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -17,8 +19,8 @@ import { UserEntity } from './user/user.entity';
     database: typedEnv.DB_NAME,
     entities: [UserEntity]
   }),
-    HeadlessChromeModule, UserModule],
-  controllers: [AppController],
+    HeadlessChromeModule, UserModule, AuthModule],
+  controllers: [AppController, AuthController],
   providers: [AppService],
 })
 export class AppModule {
