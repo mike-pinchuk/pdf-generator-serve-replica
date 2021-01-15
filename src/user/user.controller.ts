@@ -16,6 +16,11 @@ export class UserController {
         return this.userService.getUserById(id)
     }
 
+    @Get(':email')
+    getEmail(@Param('email') email) {
+        return this.userService.findOne(email)
+    }
+
     @Post()
     createUser(@Body() createUserDto: CreateUserDto) {
         return this.userService.createUser(createUserDto)

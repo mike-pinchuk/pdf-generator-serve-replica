@@ -15,8 +15,12 @@ export class UserServices {
         return this.usersRepository.find()
     }
 
-    getUserById(id: string): Promise<UserEntity> | undefined {
+    getUserById(id: string): Promise<UserEntity | undefined> {
         return this.usersRepository.findOne(id)
+    }
+
+    findOne(email: string): Promise<UserEntity | undefined> {
+        return this.usersRepository.findOne(email)
     }
 
     createUser(userDto: CreateUserDto) {

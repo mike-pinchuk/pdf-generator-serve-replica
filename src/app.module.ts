@@ -17,7 +17,12 @@ import { AuthModule } from './auth/auth.module';
     username: typedEnv.DB_USER,
     password: typedEnv.DB_PASSWORD,
     database: typedEnv.DB_NAME,
-    entities: [UserEntity]
+    entities: [UserEntity],
+    migrationsTableName: "custom_migration_table",
+    migrations: ['./migration/*.js'],
+    cli: {
+      migrationsDir: "migration"
+    }
   }),
     HeadlessChromeModule, UserModule, AuthModule],
   controllers: [AppController, AuthController],
