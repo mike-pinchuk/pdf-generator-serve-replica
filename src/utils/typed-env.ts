@@ -2,11 +2,11 @@ import { config } from 'dotenv';
 import * as Joi from 'joi';
 
 const requiredEnvs = {
-    DB_HOST: Joi.string(),
-    DB_PORT: Joi.number().port(),
-    DB_USER: Joi.string(),
-    DB_PASSWORD: Joi.string(),
-    DB_NAME: Joi.string()
+    DB_HOST: Joi.string().required(),
+    DB_PORT: Joi.number().port().required(),
+    DB_USER: Joi.string().required(),
+    DB_PASSWORD: Joi.string().required(),
+    DB_NAME: Joi.string().required()
 };
 
 const optionsEnvs = {
