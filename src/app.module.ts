@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'postgres',
+    synchronize: true,
     host: typedEnv.DB_HOST,
     port: typedEnv.DB_PORT,
     username: typedEnv.DB_USER,

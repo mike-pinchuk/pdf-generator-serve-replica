@@ -1,13 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('user')
 export class UserEntity {
     @PrimaryGeneratedColumn('uuid', { name: 'id' })
     id: string
 
-    @Column()
+    @Column({ unique: true, nullable: false })
     email: string
 
-    @Column({ name: 'password_hash' })
+    @Column({ name: 'password_hash', nullable: false })
     passwordHash: string
 }
