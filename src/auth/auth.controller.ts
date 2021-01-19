@@ -9,11 +9,11 @@ export class AuthController {
 
     }
 
-    @UseGuards(LocalAuthGuard)
-    @Post('auth/login')
-    async login(@Request() req) {
-        return req.user
-    }
+    // @UseGuards(LocalAuthGuard)
+    // @Post('auth/login')
+    // async login(@Request() req) {
+    //     return req.user
+    // }
 
     @Post()
     createUser(@Body() createAuthUserDto: CreateAuthUserDto) {
