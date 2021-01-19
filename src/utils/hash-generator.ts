@@ -1,10 +1,7 @@
 import { createHash } from 'crypto'
-import { CreateUserDto } from 'src/user/DTO/create-user.dto'
+import { CreateAuthUserDto } from '../auth/dto/auth-user.dto'
 
 
-export const hashGenerator = (dto: CreateUserDto): string => {
-    const hash = createHash('sha384')
-    const data = hash.update(dto.passwordHash, 'utf8')
-    const gen_hash = data.digest('hex')
-    return gen_hash
+export const hashGenerator = (dto: CreateAuthUserDto): string => {
+    return createHash('sha384').update(dto.passwordHash, 'utf8').digest('hex')
 }

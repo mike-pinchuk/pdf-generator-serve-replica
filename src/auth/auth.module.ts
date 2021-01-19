@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 import { LocalStrategy } from './local.strategy';
 
 @Module({
-  imports: [UserModule, PassportModule, TypeOrmModule.forFeature([UserEntity])],
+  imports: [UserModule, PassportModule],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy],
   exports: [AuthService]
