@@ -19,7 +19,7 @@ import { AuthModule } from './auth/auth.module';
     password: typedEnv.DB_PASSWORD,
     database: typedEnv.DB_NAME,
     entities: [UserEntity],
-    migrationsTableName: "custom_migration_table",
+    migrationsTableName: "migration_table",
     migrations: ['./migration/*.js'],
     cli: {
       migrationsDir: "migration"
