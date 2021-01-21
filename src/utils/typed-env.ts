@@ -9,6 +9,10 @@ const requiredEnvs = {
     DB_NAME: Joi.string().required()
 };
 
+const secretCodeEnv = {
+    JWT_SECRET: Joi.string().required()
+}
+
 const optionsEnvs = {
     NODE_ENV: Joi.string()
         .valid('development', 'production', 'staging')
@@ -20,6 +24,7 @@ const optionsEnvs = {
 const envs =  {
     ...requiredEnvs,
     ...optionsEnvs,
+    ...secretCodeEnv
 };
 
 if (process.env.NODE_ENV === 'development') {

@@ -10,5 +10,5 @@ export class CreateAuthUserDto {
     @IsNotEmpty()
     @IsString()
     @ApiProperty({ example: 'some_password' })
-    readonly passwordHash: string
+    readonly password: string
 }

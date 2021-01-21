@@ -1,9 +1,9 @@
 
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { hashGenerator } from "src/utils/hash-generator";
+import { hashGenerator } from "src/utils/index";
 import { Repository } from "typeorm";
-import { CreateUserDto } from "./DTO/create-user.dto";
+import { CreateAuthUserDto } from "../auth/dto/auth-user.dto";
 import { UserEntity } from "./user.entity";
 
 @Injectable()
@@ -21,10 +21,10 @@ export class UserServices {
     }
 
     findEmail(email): Promise<UserEntity | undefined> {
-        return this.usersRepository.findOne({email: email})
+        return this.usersRepository.findOne({ email: email })
     }
 
-    createUser(userDto: CreateUserDto) {
-        return this.usersRepository.save({ ...userDto, passwordHash: hashGenerator(userDto) })
+    createUser(userDto: CreateAuthUserDto) {
+        return this.usersRepository.save({ ...userDto, passwordHash: hashGenerator(userDto.password) })
     }
 }
