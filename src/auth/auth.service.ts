@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserServices } from 'src/user/user.service';
 import { CreateAuthUserDto } from './dto/auth-user.dto';
 import * as jwt from 'jsonwebtoken'
+import { hashGenerator } from 'src/utils/hash-generator';
 
 
 
@@ -19,19 +20,13 @@ export class AuthService {
     // }
 
     async signIn(userDto: CreateAuthUserDto) {
-        const user = await this.usersService.findOne(userDto.email)
-        if(user && user.passwordHash === userDto.passwordHash) {
-            const token = jwt.sign(userDto, 'secret')
-            return {token: token}
+        const hashedPass = {...userDto, passwordHash: hashGenerator(userDto)}
+        const token = jwt.sign(userDto, 'secret')
+        const user = await this.usersService.findEmail(userDto.email)
+        if (user && user.passwordHash === hashedPass.passwordHash) {
+            return { token: token }
         }
-        return 'It is not working'
-        // const token = jwt.sign(userDto, 'secret')
-        
-        // if(userDto.email === findedEmail && userDto.passwordHash === findedPass) {}
-
-        // const token = jwt.sign(this.usersService.createUser(userDto), 'secret')
-        
-        // return {token: token} 
+        return 'Email or password is not exist in dadabase, SignUp please'
     }
 
     signUp(userDto: CreateAuthUserDto) {

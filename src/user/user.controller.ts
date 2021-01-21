@@ -18,8 +18,7 @@ export class UserController {
 
     @Get(':email')
     getEmail(@Query('email') email: string) {
-        console.log(email);
-        return this.userService.findOne(email)
+        return this.userService.findEmail(email)
     }
 
     @Post()
