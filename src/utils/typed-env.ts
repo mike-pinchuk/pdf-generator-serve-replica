@@ -21,7 +21,7 @@ const optionsEnvs = {
     LOGS_DIR_NAME: Joi.string().default('./logs/'),
 };
 
-const envs =  {
+const envs = {
     ...requiredEnvs,
     ...optionsEnvs,
     ...secretCodeEnv
@@ -39,16 +39,16 @@ if (process.env.NODE_ENV === 'development') {
 
 const validateAndReturnTypedEnv = () => {
     const keys = Object.keys(envs);
-    const globalEnvs: {[key: string]: any} = {};
+    const globalEnvs: { [key: string]: any } = {};
     keys.forEach(key => {
         globalEnvs[key] = process.env[key];
     });
-    const { error, value } = Joi.object(requiredEnvs).concat(Joi.object(optionsEnvs))
-        .validate(globalEnvs, {allowUnknown: false, abortEarly: true});
+    const { error, value } = Joi.object(requiredEnvs).concat(Joi.object(optionsEnvs)).concat(Joi.object(secretCodeEnv))
+        .validate(globalEnvs, { allowUnknown: false, abortEarly: true });
     if (error) {
         throw new Error(error.message);
     }
-    return value as {[key in keyof typeof envs]: any};
+    return value as { [key in keyof typeof envs]: any };
 };
 
 export const typedEnv = validateAndReturnTypedEnv();

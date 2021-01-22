@@ -1,7 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
-import { LocalAuthGuard } from './auth/local-auth.guard';
+
+
 
 @ApiTags('app')
 @Controller()
