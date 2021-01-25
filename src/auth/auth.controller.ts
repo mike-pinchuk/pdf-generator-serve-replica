@@ -10,12 +10,12 @@ export class AuthController {
 
     @Post('signup')
     createUser(@Body() createAuthUserDto: CreateAuthUserDto) {
-        return this.authService.signUp(createAuthUserDto)
+        return this.authService.signUp(createAuthUserDto);
     }
 
     @Post('signin')
     findEmail(@Body() createAuthUserDto: CreateAuthUserDto) {
-        return this.authService.signIn(createAuthUserDto)
+        return this.authService.signIn(createAuthUserDto);
     }
 
 }

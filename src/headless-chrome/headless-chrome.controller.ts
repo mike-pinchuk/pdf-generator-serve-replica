@@ -1,8 +1,8 @@
 import {Body, Controller, Post, Res} from '@nestjs/common';
-import {HeadlessChromeService} from "./headless-chrome.service";
-import {ApiOperation, ApiTags} from "@nestjs/swagger";
-import {SetupDefaultScreenDto} from "./dto/create-pdf.dto";
-import {Response} from "express";
+import {HeadlessChromeService} from './headless-chrome.service';
+import {ApiOperation, ApiTags} from '@nestjs/swagger';
+import {SetupDefaultScreenDto} from './dto/create-pdf.dto';
+import {Response} from 'express';
 
 @ApiTags('PDF')
 @Controller('headless-chrome')
@@ -18,7 +18,7 @@ export class HeadlessChromeController {
         res.status(200)
             .set({
                 'Content-Type': 'application/pdf',
-                'Content-Length': pdfBuffer.length.toString()
+                'Content-Length': pdfBuffer.length.toString(),
             })
             .send(pdfBuffer);
     }

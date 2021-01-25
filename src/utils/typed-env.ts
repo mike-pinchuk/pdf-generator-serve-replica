@@ -6,12 +6,12 @@ const requiredEnvs = {
     DB_PORT: Joi.number().port().required(),
     DB_USER: Joi.string().required(),
     DB_PASSWORD: Joi.string().required(),
-    DB_NAME: Joi.string().required()
+    DB_NAME: Joi.string().required(),
 };
 
 const secretCodeEnv = {
-    JWT_SECRET: Joi.string().required()
-}
+    JWT_SECRET: Joi.string().required(),
+};
 
 const optionsEnvs = {
     NODE_ENV: Joi.string()
@@ -24,7 +24,7 @@ const optionsEnvs = {
 const envs = {
     ...requiredEnvs,
     ...optionsEnvs,
-    ...secretCodeEnv
+    ...secretCodeEnv,
 };
 
 if (process.env.NODE_ENV === 'development') {

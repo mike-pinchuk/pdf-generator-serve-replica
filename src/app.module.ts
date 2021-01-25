@@ -1,9 +1,9 @@
-import { Dependencies, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HeadlessChromeModule } from "./headless-chrome/headless-chrome.module";
 import { UserModule } from './user/user.module';
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { typedEnv } from './utils/typed-env';
 import { UserEntity } from './user/user.entity';
 import { AuthController } from './auth/auth.controller';

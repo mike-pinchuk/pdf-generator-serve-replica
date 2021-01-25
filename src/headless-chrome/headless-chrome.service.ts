@@ -1,12 +1,15 @@
 import {Injectable, InternalServerErrorException} from '@nestjs/common';
 import { Browser, launch, PDFFormat } from 'puppeteer';
-import {logger} from "../utils/logger";
+import {logger} from '../utils/logger';
 
 @Injectable()
 export class HeadlessChromeService {
   private browser: Browser | undefined;
 
-  async generatePdf(pageInfo: {htmlTemplate: string, style?: string}, pageSize: {format: PDFFormat, width?: string | number, height?: string| number}) {
+  async generatePdf(
+    pageInfo: {htmlTemplate: string, style?: string},
+    pageSize: {format: PDFFormat, width?: string | number, height?: string| number},
+  ) {
     logger.info('[generate-pdf] Started service method for generate a pdf with params: '
         + `pageInfo = {htmlTemplate: '${pageInfo.htmlTemplate}', style: '${pageInfo.style}'}`
         + ` and pageSize = {format: '${pageSize.format}', width: ${pageSize.width}, height: ${pageSize.height}}`);
@@ -19,7 +22,7 @@ export class HeadlessChromeService {
     logger.warn('[generate-pdf] Created new web page!');
     await page.setContent(pageInfo.htmlTemplate);
     logger.info('[generate-pdf] Successfully setup html like a web page content!');
-    if(pageInfo.style) {
+    if (pageInfo.style) {
       await page.addStyleTag({ content: pageInfo.style });
       logger.info('[generate-pdf] Added style to the web page!');
     }
@@ -46,7 +49,8 @@ export class HeadlessChromeService {
         }
       }
     } catch (err) {
-      logger.error(`[browser] Error on close a headless chrome! The error info - '${err.toString()}', throw error - ${'ERROR_ISSUE_ON_CLOSE_HEADLESS_CHROME'}`);
+      logger.error(`[browser] Error on close a headless chrome! The error info - '
+      ${err.toString()}', throw error - ${'ERROR_ISSUE_ON_CLOSE_HEADLESS_CHROME'}`);
       throw new InternalServerErrorException('ERROR_ISSUE_ON_CLOSE_HEADLESS_CHROME', err);
     }
   }
@@ -64,7 +68,8 @@ export class HeadlessChromeService {
         },
       });
     } catch (err) {
-      logger.error(`[browser] Error on launch a headless chrome! The error info - '${err.toString()}', throw error - ${'ERROR_ISSUE_ON_LAUNCH_HEADLESS_CHROME'}`);
+      logger.error(`[browser] Error on launch a headless chrome! The error info - '${err.toString()}
+      ', throw error - ${'ERROR_ISSUE_ON_LAUNCH_HEADLESS_CHROME'}`);
       throw new InternalServerErrorException('ERROR_ISSUE_ON_LAUNCH_HEADLESS_CHROME', err);
     }
   }

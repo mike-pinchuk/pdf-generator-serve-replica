@@ -1,10 +1,9 @@
-import {typedEnv} from "./utils/typed-env";
-
+import {typedEnv} from './utils/typed-env';
 import {NestFactory} from '@nestjs/core';
 import {AppModule} from './app.module';
-import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
-import {ValidationPipe} from "@nestjs/common";
-import {expressMiddleware} from "cls-rtracer";
+import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
+import {ValidationPipe} from '@nestjs/common';
+import {expressMiddleware} from 'cls-rtracer';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -18,6 +17,7 @@ async function bootstrap() {
     const options = new DocumentBuilder()
         .setTitle('Pdf generator')
         .setDescription('The server with ability to generate pdf from html')
+        .addBearerAuth()
         .setVersion('1.0')
         .build();
     const document = SwaggerModule.createDocument(app, options);
