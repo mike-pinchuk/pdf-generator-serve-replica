@@ -8,6 +8,7 @@ import { typedEnv } from './utils/typed-env';
 import { UserEntity } from './user/user.entity';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
+import { PostModule } from './post/post.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -25,7 +26,7 @@ import { AuthModule } from './auth/auth.module';
       migrationsDir: "migration"
     }
   }),
-    HeadlessChromeModule, UserModule, AuthModule],
+    HeadlessChromeModule, UserModule, AuthModule, PostModule],
   controllers: [AppController, AuthController],
   providers: [AppService],
 })
