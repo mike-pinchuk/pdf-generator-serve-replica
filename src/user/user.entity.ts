@@ -16,5 +16,6 @@ export class UserEntity extends BaseEntity {
     userId: string
 
     @OneToMany(() => PostEntity, (post) => post.user)
+    @JoinColumn({ name: 'userId' })
     posts: PostEntity[]
 }
