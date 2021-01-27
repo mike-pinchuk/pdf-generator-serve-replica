@@ -2,12 +2,16 @@ import { config } from 'dotenv';
 import * as Joi from 'joi';
 
 const requiredEnvs = {
-    DB_HOST: Joi.string(),
-    DB_PORT: Joi.number().port(),
-    DB_USER: Joi.string(),
-    DB_PASSWORD: Joi.string().min(3),
-    DB_NAME: Joi.string()
+    DB_HOST: Joi.string().required(),
+    DB_PORT: Joi.number().port().required(),
+    DB_USER: Joi.string().required(),
+    DB_PASSWORD: Joi.string().required(),
+    DB_NAME: Joi.string().required()
 };
+
+const secretCodeEnv = {
+    JWT_SECRET: Joi.string().required()
+}
 
 const optionsEnvs = {
     NODE_ENV: Joi.string()
@@ -20,6 +24,7 @@ const optionsEnvs = {
 const envs =  {
     ...requiredEnvs,
     ...optionsEnvs,
+    ...secretCodeEnv
 };
 
 if (process.env.NODE_ENV === 'development') {

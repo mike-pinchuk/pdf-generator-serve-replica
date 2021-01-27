@@ -12,12 +12,18 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'postgres',
+    synchronize: true,
     host: typedEnv.DB_HOST,
     port: typedEnv.DB_PORT,
     username: typedEnv.DB_USER,
     password: typedEnv.DB_PASSWORD,
     database: typedEnv.DB_NAME,
-    entities: [UserEntity]
+    entities: [UserEntity],
+    migrationsTableName: "migration_table",
+    migrations: ['./migration/*.js'],
+    cli: {
+      migrationsDir: "migration"
+    }
   }),
     HeadlessChromeModule, UserModule, AuthModule],
   controllers: [AppController, AuthController],
