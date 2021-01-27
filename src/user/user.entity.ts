@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { PostEntity } from 'src/post/post.entity'
 
 @Entity('user')
@@ -11,6 +11,9 @@ export class UserEntity extends BaseEntity {
 
     @Column({ name: 'password_hash', nullable: false })
     passwordHash: string;
+
+    @JoinColumn({name: 'userId'})
+    userId: string
 
     @OneToMany(() => PostEntity, (post) => post.user)
     posts: PostEntity[]

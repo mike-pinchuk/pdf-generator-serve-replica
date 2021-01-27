@@ -1,10 +1,11 @@
+import { id } from "cls-rtracer";
 import { UserEntity } from "src/user/user.entity";
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity()
+@Entity('post')
 export class PostEntity extends BaseEntity {
-    @PrimaryGeneratedColumn('uuid', {name: 'postId'})
-    postId: string
+    @PrimaryGeneratedColumn('uuid', {name: 'id'})
+    id: string
 
     @Column({nullable: false, length: 120})
     title: string
@@ -12,7 +13,7 @@ export class PostEntity extends BaseEntity {
     @Column({nullable: false, length: 1200})
     content: string
 
-    @Column()
+    @JoinColumn({name: 'id'})
     userId: string
 
     @Column({nullable: false, name: 'created_at'})

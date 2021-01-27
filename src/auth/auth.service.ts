@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, Req, Res } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateAuthUserDto } from './dto/auth-user.dto';
 import * as jwt from 'jsonwebtoken';
 import { hashGenerator } from 'src/utils/index';

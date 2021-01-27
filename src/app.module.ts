@@ -9,6 +9,7 @@ import { UserEntity } from './user/user.entity';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { PostModule } from './post/post.module';
+import { PostEntity } from './post/post.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -19,7 +20,7 @@ import { PostModule } from './post/post.module';
     username: typedEnv.DB_USER,
     password: typedEnv.DB_PASSWORD,
     database: typedEnv.DB_NAME,
-    entities: [UserEntity],
+    entities: [UserEntity, PostEntity],
     migrationsTableName: "migration_table",
     migrations: ['./migration/*.js'],
     cli: {
