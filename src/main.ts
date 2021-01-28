@@ -1,9 +1,9 @@
-import {typedEnv} from './utils/typed-env';
-import {NestFactory} from '@nestjs/core';
-import {AppModule} from './app.module';
-import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
-import {ValidationPipe} from '@nestjs/common';
-import {expressMiddleware} from 'cls-rtracer';
+import { typedEnv } from './utils/typed-env';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
+import { expressMiddleware } from 'cls-rtracer';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -12,6 +12,7 @@ async function bootstrap() {
         new ValidationPipe({
             whitelist: true,
             forbidNonWhitelisted: true,
+            transform: true,
         }),
     );
     const options = new DocumentBuilder()

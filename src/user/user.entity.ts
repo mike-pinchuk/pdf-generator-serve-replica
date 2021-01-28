@@ -12,10 +12,10 @@ export class UserEntity extends BaseEntity {
     @Column({ name: 'password_hash', nullable: false })
     passwordHash: string;
 
-    @JoinColumn({name: 'userId'})
-    userId: string
+    // @JoinColumn({name: 'userId'})
+    // userId: string
 
     @OneToMany(() => PostEntity, (post) => post.user)
-    @JoinColumn({ name: 'userId' })
+    @JoinColumn()
     posts: PostEntity[]
 }
