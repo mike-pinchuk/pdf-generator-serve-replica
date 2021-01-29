@@ -1,26 +1,23 @@
-import { ApiProperty } from "@nestjs/swagger"
-import { Type } from "class-transformer"
-import { IsDate, IsNotEmpty } from "class-validator"
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsDate, IsNotEmpty } from 'class-validator';
 
 export class CreatePostUserDto {
     @IsNotEmpty()
     @ApiProperty({ example: 'Some Article' })
-    readonly title: string
+    readonly title: string;
 
     @IsNotEmpty()
-    @ApiProperty({ example: 'Some text wich shows your personal oppinion and uniqueness' })
-    readonly content: string
+    @ApiProperty({ example: 'Some text which shows your personal opinion and uniqueness' })
+    readonly content: string;
 
     @Type(() => Date)
     @IsDate()
     @ApiProperty()
-    readonly createdAt: Date
+    readonly createdAt: Date;
 
-    @Type(() => Date)
-    @IsDate()
-    @ApiProperty()
-    readonly updatedAt?: Date
-
+    // @Type(() => Date)
+    // @IsDate()
     // @ApiProperty()
-    // readonly userId: string
+    // readonly updatedAt?: Date;
 }
