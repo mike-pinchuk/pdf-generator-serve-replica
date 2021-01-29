@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { HeadlessChromeModule } from "./headless-chrome/headless-chrome.module";
+import { HeadlessChromeModule } from './headless-chrome/headless-chrome.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typedEnv } from './utils/typed-env';
@@ -21,11 +21,11 @@ import { PostEntity } from './post/post.entity';
     password: typedEnv.DB_PASSWORD,
     database: typedEnv.DB_NAME,
     entities: [UserEntity, PostEntity],
-    migrationsTableName: "migration_table",
+    migrationsTableName: 'migration_table',
     migrations: ['./migration/*.js'],
     cli: {
-      migrationsDir: "migration"
-    }
+      migrationsDir: 'migration',
+    },
   }),
     HeadlessChromeModule, UserModule, AuthModule, PostModule],
   controllers: [AppController, AuthController],
