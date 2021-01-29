@@ -14,6 +14,8 @@ services:
   app:
     container_name: "pdf-generator-server"
     build: .
+    depends_on:
+      - mydb
     restart: always
     environment:
       DB_HOST: mydb
@@ -27,3 +29,4 @@ services:
     working_dir: /home/node/app
     volumes:
       - "./:/home/node/app"
+    command: bash -c "npm i && npm run start:dev"
