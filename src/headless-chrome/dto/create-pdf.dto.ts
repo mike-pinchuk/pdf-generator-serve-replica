@@ -20,12 +20,12 @@ export class SetupDefaultScreenDto {
     @IsNotEmpty()
     @IsString()
     @ApiProperty({example: '<html>test</html>'})
-    html: string;
+    html!: string;
 
     @IsOptional()
     @IsString()
     @ApiProperty({example: 'html{margin:0;}'})
-    style: string;
+    style!: string;
 
     @IsOptional()
     @IsEnum(Object.values(DocumentFormat))
@@ -34,9 +34,9 @@ export class SetupDefaultScreenDto {
 
     @IsOptional()
     @ApiProperty({example: 10})
-    width: number;
+    width!: number;
 
     @IsOptional()
     @ApiProperty({example: 10})
-    height: number;
+    height!: number;
 }

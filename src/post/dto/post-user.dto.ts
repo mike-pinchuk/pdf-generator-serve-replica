@@ -5,16 +5,16 @@ import { IsDate, IsNotEmpty } from 'class-validator';
 export class CreatePostUserDto {
     @IsNotEmpty()
     @ApiProperty({ example: 'Some Article' })
-    readonly title: string;
+    readonly title!: string;
 
     @IsNotEmpty()
     @ApiProperty({ example: 'Some text which shows your personal opinion and uniqueness' })
-    readonly content: string;
+    readonly content!: string;
 
     @Type(() => Date)
     @IsDate()
     @ApiProperty()
-    readonly createdAt: Date;
+    readonly createdAt?: Date;
 
     // @Type(() => Date)
     // @IsDate()

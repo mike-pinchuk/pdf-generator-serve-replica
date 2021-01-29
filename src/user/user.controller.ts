@@ -1,6 +1,8 @@
 import { Controller, Get, Param, UseGuards, Request } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { AuthorizedRequest } from 'src/utils/types';
 import { UserServices } from './user.service';
 
 @ApiBearerAuth()
@@ -16,12 +18,12 @@ export class UserController {
 
     @UseGuards(JwtAuthGuard)
     @Get('profile')
-    getProfile(@Request() req) {
+    getProfile(@Request() req: AuthorizedRequest) {
         return this.userService.getUserById(req.user.id);
     }
 
     @Get(':id')
-    getUser(@Param('id') id) {
+    getUser(@Param('id') id: string) {
         return this.userService.getUserById(id);
     }
 

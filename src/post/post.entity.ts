@@ -4,24 +4,24 @@ import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColu
 @Entity('post')
 export class PostEntity extends BaseEntity {
     @PrimaryGeneratedColumn('uuid', { name: 'id' })
-    id: string;
+    id!: string;
 
     @Column({ nullable: false, length: 120 })
-    title: string;
+    title!: string;
 
     @Column({ nullable: false, length: 1200 })
-    content: string;
+    content!: string;
 
     @Column({name: 'user_id', nullable: false})
-    userId: string;
+    userId!: string;
 
     @Column({ nullable: false, name: 'created_at' })
-    createdAt: Date;
+    createdAt!: Date;
 
     @UpdateDateColumn({ name: 'updated_at', onUpdate: 'now()' })
-    updatedAt: Date;
+    updatedAt!: Date;
 
     @ManyToOne(() => UserEntity, (user) => user.posts)
     @JoinColumn({name: 'user_id'})
-    user: UserEntity;
+    user?: UserEntity;
 }

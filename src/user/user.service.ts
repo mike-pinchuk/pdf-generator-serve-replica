@@ -1,4 +1,3 @@
-
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hashGenerator } from 'src/utils/index';
@@ -20,7 +19,7 @@ export class UserServices {
         return this.usersRepository.findOne(id);
     }
 
-    findEmail(email): Promise<UserEntity | undefined> {
+    findEmail(email: string): Promise<UserEntity | undefined> {
         return this.usersRepository.findOne({ email });
     }
 
