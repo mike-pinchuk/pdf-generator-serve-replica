@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateAuthUserDto } from './dto/auth-user.dto';
 import * as jwt from 'jsonwebtoken';
-import { hashGenerator } from 'src/utils/index';
-import { typedEnv } from 'src/utils/typed-env';
-import { UserServices } from 'src/user/user.service';
+import { hashGenerator } from '../utils';
+import { typedEnv } from '../utils/typed-env';
+import { UserServices } from '../user/user.service';
 
 @Injectable()
 export class AuthService {

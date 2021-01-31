@@ -1,5 +1,14 @@
-import { UserEntity } from 'src/user/user.entity';
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { UserEntity } from '../user/user.entity';
+import {
+    BaseEntity,
+    Column,
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('post')
 export class PostEntity extends BaseEntity {
@@ -15,10 +24,10 @@ export class PostEntity extends BaseEntity {
     @Column({name: 'user_id', nullable: false})
     userId!: string;
 
-    @Column({ nullable: false, name: 'created_at' })
+    @CreateDateColumn({ nullable: false, name: 'created_at' })
     createdAt!: Date;
 
-    @UpdateDateColumn({ name: 'updated_at', onUpdate: 'now()' })
+    @UpdateDateColumn({ name: 'updated_at' }) // onUpdate: 'now()'
     updatedAt!: Date;
 
     @ManyToOne(() => UserEntity, (user) => user.posts)

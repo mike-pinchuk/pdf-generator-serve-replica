@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreatePostUserDto } from './dto/post-user.dto';
 import { PostService } from './post.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { AuthorizedRequest } from 'src/utils/types';
+import { AuthorizedRequest } from '../utils/types';
 
 @ApiBearerAuth()
 @ApiTags('posts')
@@ -13,8 +13,9 @@ export class PostController {
 
     @Post()
     @UseGuards(JwtAuthGuard)
-    createPost(@Body() createPostUserDto: CreatePostUserDto, @Req() req: AuthorizedRequest) {
-        return this.postService.createNewPost({ ...createPostUserDto, userId: req.user.id });
+    async createPost(@Body() createPostUserDto: CreatePostUserDto, @Req() req: AuthorizedRequest) {
+        const savedPost = await this.postService.createNewPost({ ...createPostUserDto, userId: req.user.id });
+        return this.postService.getPost({id: savedPost.id});
     }
 
 }

@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { PostEntity } from 'src/post/post.entity';
+import { PostEntity } from '../post/post.entity';
 
 @Entity('user')
 export class UserEntity extends BaseEntity {
