@@ -12,6 +12,18 @@ export class PostService {
     }
 
     async getPost(findCriteria: Partial<Pick<PostEntity, 'id' | 'title'>>, relations = ['user']) {
-        return this.postRepository.findOne(findCriteria, {relations});
+        return this.postRepository.findOne(findCriteria, { relations });
+    }
+
+    async update(id: string, updateDto: Pick<PostEntity, 'title' | 'content'>): Promise<void> {
+        await this.postRepository.update({ id }, updateDto)
+    }
+
+    async getPosts() {
+        return this.postRepository.find()
+    }
+
+    async getPostsUser(findCriteria: Partial<Pick<PostEntity, 'id' | 'userId'>>, relations = ['user']) {
+        return this.postRepository.findOne(findCriteria, { relations });
     }
 }
