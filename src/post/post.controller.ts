@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreatePostUserDto } from './dto/post-user.dto';
 import { PostService } from './post.service';
@@ -24,7 +24,7 @@ export class PostController {
         return this.postService.getPosts()
     }
 
-    @Put(':id')
+    @Patch(':id')
     @UseGuards(JwtAuthGuard)
     async updatePost(@Param('id') id: string, @Body() updatePostDto: UpdatePostUserDto) {
         await this.postService.update(id, updatePostDto);
@@ -34,7 +34,7 @@ export class PostController {
     @Get('/all_posts/:id')
     @UseGuards(JwtAuthGuard)
     async findAllUserPosts(@Param('id') id: string) {
-        return this.postService.getPostsUser({ id })
+        return this.postService.getPostsUser({ userId: id })
     }
 
     @Get(':id')
