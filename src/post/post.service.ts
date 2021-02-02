@@ -16,7 +16,6 @@ export class PostService {
     }
 
     async update(id: string, updateDto: Pick<PostEntity, 'title' | 'content'>): Promise<void> {
-        console.log('asd', id, updateDto)
         const post = await this.postRepository.findOne(id)
         if (!post) {
             throw new NotFoundException()
