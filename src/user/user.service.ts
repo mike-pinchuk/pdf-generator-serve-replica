@@ -2,14 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hashGenerator } from '../utils';
 import { Repository } from 'typeorm';
-import { CreateAuthUserDto } from '../auth/dto/auth-user.dto';
 import { UserEntity } from './user.entity';
 
 @Injectable()
 export class UserService {
-    constructor(@InjectRepository(UserEntity)
-    private usersRepository: Repository<UserEntity>,
-    ) { }
+    constructor(@InjectRepository(UserEntity) private usersRepository: Repository<UserEntity>) { }
 
     async getUserById(id: string): Promise<UserEntity | undefined> {
         return this.usersRepository.findOne(id);
@@ -23,7 +20,7 @@ export class UserService {
           .getOne();
     }
 
-    async createUser(userDto: CreateAuthUserDto) {
-        return this.usersRepository.save({ ...userDto, passwordHash: hashGenerator(userDto.password) });
+    async createUser(email: string, password: string) {
+        return this.usersRepository.save({ email, passwordHash: hashGenerator(password) });
     }
 }

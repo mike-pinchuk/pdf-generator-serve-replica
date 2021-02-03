@@ -18,7 +18,7 @@ export class AuthController {
         if (existUser) {
           throw new BadRequestException('ERROR_USER_WITH_THIS_EMAIL_EXIST');
         }
-        const user = await this.userService.createUser(signUpDto);
+        const user = await this.userService.createUser(signUpDto.email, signUpDto.password);
         return this.authService.createToken(user.id);
     }
 
