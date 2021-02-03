@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PostEntity } from './post.entity';
@@ -15,20 +15,18 @@ export class PostService {
         return this.postRepository.findOne(findCriteria, { relations });
     }
 
-    async update(id: string, updateDto: Pick<PostEntity, 'title' | 'content'>): Promise<void> {
-        const post = await this.postRepository.findOne(id)
-        if (!post) {
-            throw new NotFoundException()
-        }
-        Object.assign(post, updateDto)
-        await this.postRepository.save(post).catch(e => console.log(e.message))
+    async update(id: string, post: Partial<Omit<PostEntity, 'id'>>): Promise<void> {
+        await this.postRepository.update({id}, post);
     }
 
-    async getPosts() {
-        return this.postRepository.find()
-    }
-
-    async getPostsUser(findCriteria: Partial<Pick<PostEntity, 'id' | 'userId'>>) {
-        return this.postRepository.find({ where: { userId: findCriteria.userId } });
+    async getPosts(findCriteria: Partial<Pick<PostEntity, 'userId'>> = {}, relations = ['user']) {
+        const [items, total] = await this.postRepository.findAndCount({
+            where: findCriteria,
+            relations,
+        });
+        return {
+            items,
+            total,
+        };
     }
 }

@@ -15,7 +15,7 @@ export class PostEntity extends BaseEntity {
     @PrimaryGeneratedColumn('uuid', { name: 'id' })
     id!: string;
 
-    @Column({ nullable: false, length: 120 })
+    @Column({ nullable: false, length: 120, unique: true })
     title!: string;
 
     @Column({ nullable: false, length: 1200 })
@@ -27,7 +27,7 @@ export class PostEntity extends BaseEntity {
     @CreateDateColumn({ nullable: false, name: 'created_at' })
     createdAt!: Date;
 
-    @UpdateDateColumn({ name: 'updated_at' }) // onUpdate: 'now()'
+    @UpdateDateColumn({ name: 'updated_at' })
     updatedAt!: Date;
 
     @ManyToOne(() => UserEntity, (user) => user.posts)

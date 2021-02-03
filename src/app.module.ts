@@ -24,7 +24,7 @@ import { PostModule } from './post/post.module';
       migrationsDir: 'migration',
     },
   }),
-    HeadlessChromeModule, UserModule, AuthModule, PostModule],
+    AuthModule, HeadlessChromeModule, UserModule, PostModule],
   controllers: [AppController],
   providers: [AppService],
 })

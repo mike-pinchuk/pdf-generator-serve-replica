@@ -1,14 +1,14 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsOptional, IsString } from 'class-validator';
 
 export class UpdatePostUserDto {
+    @IsOptional()
     @IsString()
-    @IsNotEmpty()
     @ApiProperty({ example: 'Some Article' })
-    readonly title!: string;
+    readonly title?: string;
 
+    @IsOptional()
     @IsString()
-    @IsNotEmpty()
     @ApiProperty({ example: 'Some text which shows your personal opinion and uniqueness' })
-    readonly content!: string;
+    readonly content?: string;
 }
