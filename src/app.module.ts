@@ -5,10 +5,8 @@ import { HeadlessChromeModule } from './headless-chrome/headless-chrome.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typedEnv } from './utils/typed-env';
-import { UserEntity } from './user/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { PostModule } from './post/post.module';
-import { PostEntity } from './post/post.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -19,7 +17,7 @@ import { PostEntity } from './post/post.entity';
     username: typedEnv.DB_USER,
     password: typedEnv.DB_PASSWORD,
     database: typedEnv.DB_NAME,
-    entities: [UserEntity, PostEntity],
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
     migrationsTableName: 'migration_table',
     migrations: ['./migration/*.js'],
     cli: {
