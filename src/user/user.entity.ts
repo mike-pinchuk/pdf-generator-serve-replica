@@ -9,7 +9,7 @@ export class UserEntity extends BaseEntity {
     @Column({ unique: true, nullable: false })
     email!: string;
 
-    @Column({ name: 'password_hash', nullable: false })
+    @Column({ name: 'password_hash', nullable: false, select: false })
     passwordHash!: string;
 
     @OneToMany(() => PostEntity, (post) => post.user)

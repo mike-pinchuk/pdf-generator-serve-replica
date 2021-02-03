@@ -6,7 +6,6 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typedEnv } from './utils/typed-env';
 import { UserEntity } from './user/user.entity';
-import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { PostModule } from './post/post.module';
 import { PostEntity } from './post/post.entity';
@@ -28,7 +27,7 @@ import { PostEntity } from './post/post.entity';
     },
   }),
     HeadlessChromeModule, UserModule, AuthModule, PostModule],
-  controllers: [AppController, AuthController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {

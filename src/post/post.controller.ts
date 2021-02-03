@@ -4,7 +4,7 @@ import { CreatePostUserDto } from './dto/post-user.dto';
 import { PostService } from './post.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthorizedRequest } from '../utils/types';
-import { UpdatePostUserDto } from './dto/update-post.dto'
+import { UpdatePostUserDto } from './dto/update-post.dto';
 
 @ApiBearerAuth()
 @ApiTags('posts')
@@ -21,7 +21,7 @@ export class PostController {
 
     @Get()
     async findAllPosts() {
-        return this.postService.getPosts()
+        return this.postService.getPosts();
     }
 
     @Patch(':id')
@@ -34,13 +34,13 @@ export class PostController {
     @Get('/all_posts/:id')
     @UseGuards(JwtAuthGuard)
     async findAllUserPosts(@Param('id') id: string) {
-        return this.postService.getPostsUser({ userId: id })
+        return this.postService.getPostsUser({ userId: id });
     }
 
     @Get(':id')
     @UseGuards(JwtAuthGuard)
     async getPostId(@Param('id') id: string) {
-        return this.postService.getPost({ id })
+        return this.postService.getPost({ id });
     }
 
 }

@@ -3,25 +3,21 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthorizedRequest } from '../utils/types';
-import { UserServices } from './user.service';
+import { UserService } from './user.service';
 
 @ApiBearerAuth()
 @ApiTags('users')
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserServices) { }
-
-    @Get()
-    getAllUsers() {
-        return this.userService.getAll();
-    }
+    constructor(private readonly userService: UserService) { }
 
     @UseGuards(JwtAuthGuard)
-    @Get('profile')
+    @Get('me')
     getProfile(@Request() req: AuthorizedRequest) {
         return this.userService.getUserById(req.user.id);
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get(':id')
     getUser(@Param('id') id: string) {
         return this.userService.getUserById(id);

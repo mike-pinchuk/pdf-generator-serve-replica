@@ -6,24 +6,24 @@ import { CreateAuthUserDto } from '../auth/dto/auth-user.dto';
 import { UserEntity } from './user.entity';
 
 @Injectable()
-export class UserServices {
+export class UserService {
     constructor(@InjectRepository(UserEntity)
     private usersRepository: Repository<UserEntity>,
     ) { }
 
-    getAll(): Promise<UserEntity[]> {
-        return this.usersRepository.find();
-    }
-
-    getUserById(id: string): Promise<UserEntity | undefined> {
+    async getUserById(id: string): Promise<UserEntity | undefined> {
         return this.usersRepository.findOne(id);
     }
 
-    findEmail(email: string): Promise<UserEntity | undefined> {
-        return this.usersRepository.findOne({ email });
+    async findByEmailWithHideField(email: string): Promise<UserEntity | undefined> {
+        return this.usersRepository.createQueryBuilder('user')
+          .select()
+          .addSelect('user.passwordHash')
+          .where('user.email = :email', { email })
+          .getOne();
     }
 
-    createUser(userDto: CreateAuthUserDto) {
+    async createUser(userDto: CreateAuthUserDto) {
         return this.usersRepository.save({ ...userDto, passwordHash: hashGenerator(userDto.password) });
     }
 }
