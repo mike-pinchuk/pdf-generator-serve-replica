@@ -27,7 +27,7 @@ export class PostController {
 
   @Post()
   async createPost(@Body() createPostUserDto: CreatePostUserDto, @Req() req: AuthorizedRequest) {
-    const post = await this.postService.getPost({title: createPostUserDto.title});
+    const post = await this.postService.getPost({ title: createPostUserDto.title });
     if (post) {
       throw new BadRequestException('ERROR_POST_WITH_THIS_TITLE_EXIST');
     }
@@ -43,7 +43,7 @@ export class PostController {
       throw new BadRequestException('ERROR_POST_NOT_FOUND');
     }
     if ('title' in updatePostDto) {
-      const postTitle = await this.postService.getPost({ title: updatePostDto.title});
+      const postTitle = await this.postService.getPost({ title: updatePostDto.title });
       if (postTitle) {
         throw new BadRequestException('ERROR_POST_WITH_THIS_TITLE_EXIST');
       }
