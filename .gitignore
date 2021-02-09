@@ -3,6 +3,7 @@
 node_modules
 /log
 /.db-data
+/db-data
 
 # Logs
 logs
